@@ -8,7 +8,8 @@ jobs:
 
     steps:
     - name: Clean old repo
-      run: sudo rm -rf /home/github/_work/leblanc-lab-site/
+      run: >
+        sudo rm -rf /home/github/_work/leblanc-lab-site/
       
     - name: Checkout repository
       uses: actions/checkout@v3
