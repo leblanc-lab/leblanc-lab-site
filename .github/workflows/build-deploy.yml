@@ -1,0 +1,13 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  test:
+    runs-on: [self-hosted, pleblanclabcit]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
