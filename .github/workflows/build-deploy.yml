@@ -12,6 +12,7 @@ jobs:
         
   Build:
     runs-on: [self-hosted, pleblanclabcit]
+    needs: [Checkout]
     steps:
     - name: Build
       run: >
