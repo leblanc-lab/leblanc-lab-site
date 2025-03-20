@@ -7,12 +7,11 @@ jobs:
     runs-on: [self-hosted, pleblanclabcit]
 
     steps:
-    - name: Clean old repo
-      run: >
-        sudo rm -rf /home/github/_work/leblanc-lab-site/
-      
+#    - name: Clean old repo
+#      run: >
+#        sudo rm -rf /home/github/_work/leblanc-lab-site/
+
     - name: Checkout repository
-      if: '!canceled()'
       uses: actions/checkout@v3
         
   Build-Deploy:
