@@ -7,10 +7,13 @@ jobs:
     runs-on: [self-hosted, pleblanclabcit]
 
     steps:
+    - name: Clean old repo
+      run: sudo rm -rf /home/github/_work/leblanc-lab-site/
+      
     - name: Checkout repository
       uses: actions/checkout@v3
         
-  Build:
+  Build-Deploy:
     runs-on: [self-hosted, pleblanclabcit]
     needs: [Checkout]
     steps:
@@ -21,10 +24,11 @@ jobs:
         -v /site/leblanclab/runner/_work/${{ github.event.repository.name }}/${{ github.event.repository.name }}:/repo 
         -v /site/leblanclab/logs:/logs
         leblanclab-build
-    - name: Stop serve
+    - name: Stop Old Site Container
       run: >
-        sudo podman exec -it serve sh -c "pkill -f 'node /usr/local/bin/serve -s /repo/dist -l 8080'"
-    - name: Serve new site
+        sudo podman --remote --url=unix:///run/podman/podman.sock exec 
+        -it serve sh -c "pkill -f 'node /usr/local/bin/serve -s /repo/dist -l 8080'"
+    - name: Serve New Site
       run: >
         sudo podman --remote --url=unix:///run/podman/podman.sock run
         --rm
