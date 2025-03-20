@@ -3,14 +3,17 @@ name: Build and Deploy
 on: [push]
 
 jobs:
+  Cleanup:
+    runs-on: [self-hosted, plenlanclabcit]
+    steps:
+    - name: Delete old repos
+      run: >
+        cd /home/github && sudo rm -rf /home/github/_work/leblanc-lab-site/
+        
   Checkout:
     runs-on: [self-hosted, pleblanclabcit]
-
+    needs: [Cleanup]
     steps:
-    - name: Clean old repo
-      run: >
-        sudo rm -rf /home/github/_work/leblanc-lab-site/
-
     - name: Checkout repository
       uses: actions/checkout@v3
         
