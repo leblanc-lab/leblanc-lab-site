@@ -39,7 +39,7 @@ jobs:
         --rm
         -d 
         -p 8000:8080 
-        -v /github/home/_work/leblanc-lab-site/leblanc-lab-site:/repo 
-        -v /logs:/logs 
+        -v /site/leblanclab/runner/_work/${{ github.event.repository.name }}/${{ github.event.repository.name }}:/repo 
+        -v /site/leblanclab/logs:/logs 
         --name serve 
         leblanclab-serve
