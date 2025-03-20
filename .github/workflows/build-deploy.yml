@@ -16,17 +16,17 @@ jobs:
     steps:
     - name: Build
       run: >
-        podman run 
+        sudo podman run 
         --rm 
         -v /site/leblanclab/runner/_work/${{ github.event.repository.name }}/${{ github.event.repository.name }}:/repo 
         -v /site/leblanclab/logs:/logs
         leblanclab-build
     - name: Stop serve
       run: >
-        podman exec -it serve sh -c "pkill -f 'node /usr/local/bin/serve -s /repo/dist -l 8080'"
+        sudo podman exec -it serve sh -c "pkill -f 'node /usr/local/bin/serve -s /repo/dist -l 8080'"
     - name: Serve new site
       run: >
-        podman run 
+        sudo podman run 
         -d 
         -p 8000:8080 
         -v /site/leblanclab/runner/_work/leblanc-lab-site/leblanc-lab-site:/repo 
