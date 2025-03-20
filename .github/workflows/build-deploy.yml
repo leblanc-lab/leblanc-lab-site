@@ -29,6 +29,7 @@ jobs:
         -v /site/leblanclab/logs:/logs
         leblanclab-build
     - name: Stop Old Site Container
+      continue-on-error: true
       run: >
         sudo podman --remote --url=unix:///run/podman/podman.sock exec 
         -it serve sh -c "pkill -f 'node /usr/local/bin/serve -s /repo/dist -l 8080'"
