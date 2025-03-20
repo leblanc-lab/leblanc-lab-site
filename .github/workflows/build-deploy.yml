@@ -19,8 +19,8 @@ jobs:
         sudo podman --remote --url=unix:///run/podman/podman.sock run
         --privileged
         --rm 
-        -v /home/github/_work/${{ github.event.repository.name }}/${{ github.event.repository.name }}:/repo 
-        -v /logs:/logs
+        -v /site/leblanclab/runner/_work/${{ github.event.repository.name }}/${{ github.event.repository.name }}:/repo 
+        -v /site/leblanclab/logs:/logs
         leblanclab-build
 #    - name: Stop serve
 #      run: >
