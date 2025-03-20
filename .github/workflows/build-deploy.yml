@@ -18,8 +18,8 @@ jobs:
       run: >
         sudo podman run 
         --rm 
-        -v /site/leblanclab/runner/_work/${{ github.event.repository.name }}/${{ github.event.repository.name }}:/repo 
-        -v /site/leblanclab/logs:/logs
+        -v /home/github/_work/${{ github.event.repository.name }}/${{ github.event.repository.name }}:/repo 
+        -v /logs:/logs
         leblanclab-build
     - name: Stop serve
       run: >
@@ -29,7 +29,7 @@ jobs:
         sudo podman run 
         -d 
         -p 8000:8080 
-        -v /site/leblanclab/runner/_work/leblanc-lab-site/leblanc-lab-site:/repo 
-        -v /site/leblanclab/logs:/logs 
+        -v /github/home/_work/leblanc-lab-site/leblanc-lab-site:/repo 
+        -v /logs:/logs 
         --name serve 
         leblanclab-serve
