@@ -17,21 +17,20 @@ jobs:
     - name: Build
       run: >
         sudo podman --remote --url=unix:///run/podman/podman.sock run
-        --privileged
         --rm 
         -v /site/leblanclab/runner/_work/${{ github.event.repository.name }}/${{ github.event.repository.name }}:/repo 
         -v /site/leblanclab/logs:/logs
         leblanclab-build
-#    - name: Stop serve
-#      run: >
-#        sudo podman exec -it serve sh -c "pkill -f 'node /usr/local/bin/serve -s /repo/dist -l 8080'"
-#        sudo podman container rm serve
-#    - name: Serve new site
-#      run: >
-#        sudo podman run 
-#        -d 
-#        -p 8000:8080 
-#        -v /github/home/_work/leblanc-lab-site/leblanc-lab-site:/repo 
-#        -v /logs:/logs 
-#        --name serve 
-#        leblanclab-serve
+    - name: Stop serve
+      run: >
+        sudo podman exec -it serve sh -c "pkill -f 'node /usr/local/bin/serve -s /repo/dist -l 8080'"
+    - name: Serve new site
+      run: >
+        sudo podman --remote --url=unix:///run/podman/podman.sock run
+        --rm
+        -d 
+        -p 8000:8080 
+        -v /github/home/_work/leblanc-lab-site/leblanc-lab-site:/repo 
+        -v /logs:/logs 
+        --name serve 
+        leblanclab-serve
