@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   Cleanup:
-    runs-on: [self-hosted, plenlanclabcit]
+    runs-on: [self-hosted, pleblanclabcit]
     steps:
     - name: Delete old repos
       run: >
